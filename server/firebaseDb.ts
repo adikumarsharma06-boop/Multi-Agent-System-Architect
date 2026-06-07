@@ -6,10 +6,14 @@ import {
   setDoc, 
   getDocs, 
   deleteDoc,
-  writeBatch
+  writeBatch,
+  setLogLevel
 } from 'firebase/firestore';
 import fs from 'fs';
 import path from 'path';
+
+// Silence benign internal gRPC warning logs during node idle states
+setLogLevel('error');
 
 // Load config
 const configPath = path.join(process.cwd(), 'firebase-applet-config.json');
