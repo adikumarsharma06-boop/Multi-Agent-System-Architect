@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#030712" />
+    </radialGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#3730a3" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGlow)" />
+  
+  <!-- Outer glowing rings -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#312e81" stroke-width="4" stroke-dasharray="8 12" opacity="0.6" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#4338ca" stroke-width="2" opacity="0.4" />
+
+  <!-- Node connection lines -->
+  <line x1="256" y1="130" x2="380" y2="210" stroke="#4f46e5" stroke-width="6" opacity="0.8" />
+  <line x1="380" y1="210" x2="340" y2="350" stroke="#4f46e5" stroke-width="6" opacity="0.8" />
+  <line x1="340" y1="350" x2="172" y2="350" stroke="#4f46e5" stroke-width="6" opacity="0.8" />
+  <line x1="172" y1="350" x2="132" y2="210" stroke="#4f46e5" stroke-width="6" opacity="0.8" />
+  <line x1="132" y1="210" x2="256" y2="130" stroke="#4f46e5" stroke-width="6" opacity="0.8" />
+  
+  <!-- Center hub connections -->
+  <line x1="256" y1="256" x2="256" y2="130" stroke="#4f46e5" stroke-width="4" stroke-dasharray="4 4" />
+  <line x1="256" y1="256" x2="380" y2="210" stroke="#4f46e5" stroke-width="4" stroke-dasharray="4 4" />
+  <line x1="256" y1="256" x2="340" y2="350" stroke="#4f46e5" stroke-width="4" stroke-dasharray="4 4" />
+  <line x1="256" y1="256" x2="172" y2="350" stroke="#4f46e5" stroke-width="4" stroke-dasharray="4 4" />
+  <line x1="256" y1="256" x2="132" y2="210" stroke="#4f46e5" stroke-width="4" stroke-dasharray="4 4" />
+
+  <!-- Layer elements & Nodes -->
+  <!-- Planner Agent (Top) -->
+  <circle cx="256" cy="130" r="28" fill="url(#neonGrad)" filter="url(#glow)" />
+  <path d="M250 120 h12 v20 h-10 v-20 Z" fill="#ffffff" />
+  
+  <!-- Executor Builder Node (Right-top) -->
+  <circle cx="380" cy="210" r="28" fill="url(#primaryGrad)" filter="url(#glow)" />
+  
+  <!-- Compliance Verification Gate (Right-bottom) -->
+  <circle cx="340" cy="350" r="28" fill="url(#accentGrad)" filter="url(#glow)" />
+  <path d="M334 344 l4 4 l8 -8" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Analyst Node (Left-bottom) -->
+  <circle cx="172" cy="350" r="28" fill="url(#primaryGrad)" filter="url(#glow)" />
+
+  <!-- Router Agent (Left-top) -->
+  <circle cx="132" cy="210" r="28" fill="url(#primaryGrad)" filter="url(#glow)" />
+
+  <!-- Glowing core orchestrator -->
+  <circle cx="256" cy="256" r="38" fill="url(#primaryGrad)" filter="url(#glow)" />
+  <circle cx="256" cy="256" r="20" fill="#ffffff" filter="url(#glow)" opacity="0.9" />
+</svg>

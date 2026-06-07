@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    letter-spacing: -0.011em;
+    background-color: #f8fafc;
+  }
+  
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+.pattern-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Animations declarations */
+@keyframes slideIn {
+  from {
+    transform: translate(-50%, -20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes failPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.8), 0 4px 12px rgba(244, 63, 94, 0.1);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(244, 63, 94, 0), 0 4px 12px rgba(244, 63, 94, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0), 0 4px 12px rgba(244, 63, 94, 0.1);
+  }
+}
+
+.animate-fail-pulse {
+  animation: failPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes successGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8), 0 4px 12px rgba(16, 185, 129, 0.1);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(16, 185, 129, 0), 0 4px 12px rgba(16, 185, 129, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0), 0 4px 12px rgba(16, 185, 129, 0.1);
+  }
+}
+
+.animate-success-glow {
+  animation: successGlow 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+#node-gate_code_audit {
+  transition: border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+

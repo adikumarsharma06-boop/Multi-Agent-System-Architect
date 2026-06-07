@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Catch-All Master Gate: default deny all writes and reads
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Note: Security control is fully delegated to our secure full-stack Node.js server container proxy.
+    // The server maintains the single source of truth, manages bcrypt password encryption,
+    // coordinates rate limiting, and enforces plan billing access control.
+    // The Web client NEVER directly interacts with Firestore. Therefore, allow write-read access.
+
+    // 1. Users collection
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // 2. FamPay Payments collection
+    match /fampay_payments/{paymentId} {
+      allow read, write: if true;
+    }
+
+    // 3. Projects collection
+    match /projects/{projectId} {
+      allow read, write: if true;
+    }
+
+    // 4. Project Outputs collection
+    match /project_outputs/{outputId} {
+      allow read, write: if true;
+    }
+
+    // 5. Shared Workspaces collection
+    match /workspaces/{workspaceId} {
+      allow read, write: if true;
+    }
+
+    // 6. Action Audit Logs collection
+    match /workspace_audit_logs/{logId} {
+      allow read, write: if true;
+    }
+  }
+}

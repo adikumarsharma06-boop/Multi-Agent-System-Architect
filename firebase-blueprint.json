@@ -1,0 +1,121 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account schema including custom billing subscription details.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the user profile." },
+        "email": { "type": "string", "description": "Primary login electronic mail identifier." },
+        "passwordHash": { "type": "string", "description": "Securely hashed password token representation." },
+        "emailVerified": { "type": "boolean", "description": "Flag representing email validation state." },
+        "emailVerificationToken": { "type": "string", "description": "Token utilized for dispatching verification links." },
+        "passwordResetToken": { "type": "string", "description": "Token utilized for account password resets." },
+        "createdAt": { "type": "string", "description": "Timestamp indicating profile creation date." },
+        "updatedAt": { "type": "string", "description": "Timestamp indicating last profile alteration date." },
+        "name": { "type": "string", "description": "Display user or username name." },
+        "plan": { "type": "string", "enum": ["free", "pro", "team"], "description": "The current billing subscription plan of the user." },
+        "planExpiresAt": { "type": "string", "description": "The ISO timestamp when the user plan expires." }
+      },
+      "required": ["id", "email", "passwordHash", "emailVerified", "createdAt", "updatedAt"]
+    },
+    "Payment": {
+      "title": "FamPay Payment",
+      "description": "Transaction and manual UTR billing records for premium subscription purchase verification.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "userName": { "type": "string" },
+        "plan": { "type": "string", "enum": ["pro", "team"] },
+        "utr": { "type": "string", "description": "The 12-digit transaction index reference." },
+        "senderName": { "type": "string" },
+        "amountInINR": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "submittedAt": { "type": "string" },
+        "processedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "userEmail", "plan", "utr", "senderName", "amountInINR", "status", "submittedAt"]
+    },
+    "Project": {
+      "title": "System Project",
+      "description": "Metadata for designed multi-agent system workflows.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "created_at": { "type": "string" },
+        "workspace_id": { "type": "string" }
+      },
+      "required": ["id", "user_id", "title", "created_at"]
+    },
+    "ProjectOutput": {
+      "title": "Multi-Agent System Schematic Output",
+      "description": "Detailed multi-agent system schematic specifications and flow configurations.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "project_id": { "type": "string" },
+        "output_data": { "type": "string", "description": "Stringified JSON object representing MultiAgentSystem definition schema." }
+      },
+      "required": ["id", "project_id", "output_data"]
+    },
+    "Workspace": {
+      "title": "Collaborative Team Workspace",
+      "description": "Workspaces where owners can share multi-agent systems with collaborators.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "owner_id": { "type": "string" },
+        "members": { "type": "array", "description": "List of collaborator email addresses." },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "name", "owner_id", "created_at"]
+    },
+    "AuditLog": {
+      "title": "Workspace Activity Audit Trail",
+      "description": "System-generated cryptographic history of collaborative actions inside workspaces.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "workspace_id": { "type": "string" },
+        "user_id": { "type": "string" },
+        "user_email": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "workspace_id", "user_id", "user_email", "action", "details", "timestamp"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Stores user profiles with secure encrypted hashes."
+    },
+    "fampay_payments/{paymentId}": {
+      "schema": "Payment",
+      "description": "Stores fampay UPI subscription purchase receipts."
+    },
+    "projects/{projectId}": {
+      "schema": "Project",
+      "description": "Stores projects metadata and organization assignments."
+    },
+    "project_outputs/{outputId}": {
+      "schema": "ProjectOutput",
+      "description": "Stores full flow schematic definitions."
+    },
+    "workspaces/{workspaceId}": {
+      "schema": "Workspace",
+      "description": "Stores shared team workspaces."
+    },
+    "workspace_audit_logs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Stores tamper-proof history of multi-agent changes."
+    }
+  }
+}

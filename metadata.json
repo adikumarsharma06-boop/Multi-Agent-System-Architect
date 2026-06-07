@@ -1,0 +1,6 @@
+{
+  "name": "Multi-Agent System Architect",
+  "description": "Design, visualize, and simulate complex multi-agent AI workflows with interactive flowcharts, routing logic, validation feedback loops, failure-handling policies, and scalability insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
